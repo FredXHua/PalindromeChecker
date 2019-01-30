@@ -16,8 +16,9 @@ public void setup()
 }
 public boolean palindrome(String word)
 {
-  String reverse = reverse(word);
-  if(reverse.equals(word))
+  String aword = noSpacesnoCaps(onlyLetters(noCapitals(word)));
+  String noSnoC = noSpacesnoCaps(onlyLetters(reverse(noCapitals(word))));
+  if(noSnoC.equals(aword))
   return true;
   else
   return false;
@@ -30,5 +31,22 @@ public String reverse(String str)
     sNew = sNew + str.substring(i,i+1);
     return sNew;
 }
-
-
+public String noSpacesnoCaps(String sWord){
+  String c = new String("");
+  for(int i = 0; i <= sWord.length() - 1; i++){
+     if (!sWord.substring(i,i+1).equals(" "))
+     c = c + sWord.substring(i , i+1);
+  }
+  return c;
+}
+public String onlyLetters(String sString){
+  String str = new String("");
+  for(int i = 0; i <= sString.length() - 1; i++){
+    if(Character.isLetter(sString.charAt(i)) == true)
+    str = str + sString.substring(i,i+1);
+  }
+  return str;
+}
+public String noCapitals(String sWord){
+  return sWord.toLowerCase();
+}
